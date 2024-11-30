@@ -308,12 +308,7 @@
     async function fetchCharacters() {
       try {
         // Obtén todos los personajes
-        //const allCharacters = await fetchAllCharacters();
-
-        const allCharacters = [
-          { name: 'Goku', race: 'Saiyan', techniques: ['Kamehameha'], specialAbilities: ['Super Saiyan'], transformations: ['Super Saiyan'] },
-          { name: 'Vegeta', race: 'Saiyan', techniques: ['Final Flash'], specialAbilities: ['Prince of all Saiyans'], transformations: ['Super Saiyan'] },
-        ];
+        const allCharacters = await fetchAllCharacters();
 
         // Selecciona 6 personajes aleatorios
         const randomCharacters = getRandomCharacters(allCharacters, 6);
