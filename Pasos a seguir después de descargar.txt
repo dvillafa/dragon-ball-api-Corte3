@@ -1,0 +1,12 @@
+Pasos a seguir después de descargar el repositorio
+
+Instalar dependencias: npm install
+
+Crear archivo .env: Añade las siguientes variables de entorno a un archivo .env en la raíz del proyecto: 
+MONGODB_URI=mongodb://localhost:27017/dbz-api 
+PUERTO=3000 
+JWT_SECRET=tu_clave_secreta_aleatoria
+
+Inicie el servidor: npm start
+
+Pruebe la funcionalidad de Socket.IO: Abra el archivo index. html en su navegador para conectarse al servidor WebSocket y ver las actualizaciones.
