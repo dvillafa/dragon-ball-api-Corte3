@@ -251,7 +251,7 @@
 
   <script>
     const API_URL = 'https://dragon-ball-api-corte3.onrender.com/api/characters';
-    const socket = io(process.env.REACT_APP_API_URL || 'http://localhost:3000');
+    const socket = io('https://dragon-ball-api-corte3.onrender.com');
     const charactersDiv = document.getElementById('characters');
     const characterCount = document.getElementById('characterCount');
 
@@ -308,7 +308,12 @@
     async function fetchCharacters() {
       try {
         // Obtén todos los personajes
-        const allCharacters = await fetchAllCharacters();
+        //const allCharacters = await fetchAllCharacters();
+
+        const allCharacters = [
+          { name: 'Goku', race: 'Saiyan', techniques: ['Kamehameha'], specialAbilities: ['Super Saiyan'], transformations: ['Super Saiyan'] },
+          { name: 'Vegeta', race: 'Saiyan', techniques: ['Final Flash'], specialAbilities: ['Prince of all Saiyans'], transformations: ['Super Saiyan'] },
+        ];
 
         // Selecciona 6 personajes aleatorios
         const randomCharacters = getRandomCharacters(allCharacters, 6);
