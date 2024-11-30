@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragon Ball API - Docs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <style>
+    /* --- General Reset --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- Navbar --- */
+    header {
+      background: #1e1e1e;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.5rem;
+      color: #ffcc00;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Main Content --- */
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #docs-content {
+      display: grid;
+      text-align: left;
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    #docs-content h2 {
+      color: #ffcc00;
+      margin-bottom: 10px;
+    }
+
+    #docs-content p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background-color: #1e1e1e;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow: auto;
+      text-align: left;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #1111112f;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .img-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <img src="images/esfera4.png" alt="Dragon Ball API" class="img-logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <h1>Dragon Ball API - Docs</h1>
+    <div id="docs-content">
+      <h2>Introducción</h2>
+      <p>La Dragon Ball API es una API pública para acceder a datos de los personajes, técnicas, habilidades, y
+        más del universo Dragon Ball.</p>
+
+      <h2>Endpoints</h2>
+
+      <h3>GET /api/characters</h3>
+      <p>Obtiene todos los personajes disponibles con opciones de filtrado y paginación.</p>
+      <pre>
+{
+  "characters": [
+    {
+      "id": "673bd22984a9b8c3714a3f53",
+      "name": "Gohan (Adolescente)",
+      "race": "Saiyan Hibrido",
+      "techniques": ["Supermasenko", "Descarga de ráfaga de energía", "Superkamehameha"],
+      "specialAbilities": ["Sentido salvaje", "Carga maxima"],
+      "transformations": ["Super Saiyan", "Super Saiyan 2"]
+    },
+    {
+      "id": "673bcb0584a9b8c3714a3f2c",
+      "name": "Goku (Z-Temprano)",
+      "race": "Saiyan",
+      "techniques": ["Kamehameha", "Ataque de Kaioken", "Genkidama"],
+      "specialAbilities": ["Taiyoken", "Kaioken"],
+      "transformations": []
+    }
+  ]
+}
+      </pre>
+
+      <h3>GET /api/characters/:id</h3>
+      <p>Obtiene los detalles de un personaje específico por ID.</p>
+      <pre>
+{
+  "id": "673bd22984a9b8c3714a3f53",
+  "name": "Gohan (Adolescente)",
+  "race": "Saiyan Hibrido",
+  "techniques": ["Supermasenko", "Descarga de ráfaga de energía", "Superkamehameha"],
+  "specialAbilities": ["Sentido salvaje", "Carga maxima"],
+  "transformations": ["Super Saiyan", "Super Saiyan 2"]
+}
+      </pre>
+
+      <h3>GET /api/characters?name={nombre}</h3>
+      <p>Obtiene personajes filtrados por el nombre. Ejemplo: puedes buscar por "Goku" o "Gohan".</p>
+      <pre>
+{
+  "characters": [
+    {
+      "id": "673bd22984a9b8c3714a3f53",
+      "name": "Gohan (Adolescente)",
+      "race": "Saiyan Hibrido",
+      "techniques": ["Supermasenko", "Descarga de ráfaga de energía", "Superkamehameha"],
+      "specialAbilities": ["Sentido salvaje", "Carga maxima"],
+      "transformations": ["Super Saiyan", "Super Saiyan 2"]
+    }
+  ]
+}
+      </pre>
+
+      <h3>GET /api/characters?race={raza}</h3>
+      <p>Filtra personajes por su raza. Ejemplo: "Saiyan", "Humano", etc.</p>
+      <pre>
+{
+  "characters": [
+    {
+      "id": "673bd6f184a9b8c3714a3f67",
+      "name": "Krillin",
+      "race": "Humano",
+      "techniques": ["Kamehameha", "Onda de energia expansiva", "Kienzan en cadena"],
+      "specialAbilities": ["Taiyoken", "Ataque de Ilusion de imagen"],
+      "transformations": []
+    }
+  ]
+}
+      </pre>
+
+      <h3>GET /api/characters?technique={tecnica}</h3>
+      <p>Filtra personajes por técnica. Ejemplo: puedes buscar por "Kamehameha", "Genkidama", o "Supermasenko".
+      </p>
+      <pre>
+{
+  "characters": [
+    {
+      "id": "673bd22984a9b8c3714a3f53",
+      "name": "Gohan (Adolescente)",
+      "race": "Saiyan Hibrido",
+      "techniques": ["Supermasenko", "Descarga de ráfaga de energía", "Superkamehameha"],
+      "specialAbilities": ["Sentido salvaje", "Carga maxima"],
+      "transformations": ["Super Saiyan", "Super Saiyan 2"]
+    }
+  ]
+}
+      </pre>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Dragon Ball API | Creado por Diego Villafañe</p>
+    <p><a href="https://github.com/dvillafa/dragon-ball-api-Corte3" target="_blank">Ver en GitHub</a></p>
+  </footer>
+</body>
+
+</html>
