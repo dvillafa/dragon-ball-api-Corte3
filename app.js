@@ -23,6 +23,8 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cors());
 
+app.use(express.static('public'));  // Esto servirá los archivos estáticos desde la carpeta 'public'
+
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Conectado a MongoDB'))
