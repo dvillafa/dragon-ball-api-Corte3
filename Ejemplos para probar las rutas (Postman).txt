@@ -1,0 +1,104 @@
+Ejemplos para probar las rutas (Postman)
+
+Ejemplos para probar las rutas de autenticación
+1. Registrar un usuario
+	Método: POST
+	http://dragon-ball-api-corte3.onrender.com/api/auth/register
+	Headers: 
+		Content-Type: application/json
+	Body - Raw: Proporciona un nombre de usuario y contraseña.
+	Ejemplo de body:
+json
+{
+  "username": "usuario",
+  "password": "contrasena123"
+}
+
+2. Iniciar sesión
+	Método: POST
+	http://dragon-ball-api-corte3.onrender.com/api/auth/login
+	Headers: 
+		Content-Type: application/json
+	Body: Proporciona el mismo nombre de usuario y contraseña.
+	Ejemplo de body:
+json
+{
+  "username": "usuario",
+  "password": "contrasena123"
+}
+
+Respuesta: Al iniciar sesión correctamente, recibirás un token JWT en la respuesta que debes usar para las solicitudes que requieren autenticación (p. ej., creación, actualización o eliminación de personajes).
+
+3. Eliminar un usuario
+	Método: DELETE
+	http://dragon-ball-api-corte3.onrender.com/api/auth/delete/:id (Reemplaza :id por el ID del usuario a eliminar, que puedes obtener en MongoDB.)
+	Headers: 
+		Authorization: Incluye el token JWT en el formato Bearer <tu_token_jwt> (El token lo obtienes al iniciar sesión).
+	Body: Ninguno
+
+
+
+
+
+Ejemplos para probar las rutas de personajes
+1. POST /api/characters/ (Crear un nuevo personaje)
+	Método: POST
+	http://dragon-ball-api-corte3.onrender.com/api/characters
+	Headers:
+		Content-Type: application/json
+		Authorization: Bearer <tu_token_jwt>
+	Body:
+json
+{
+  "name": "Goten",
+  "race": "Saiyan Hibrido",
+  "techniques": ["Donas Galacticas", "Embestida", "Superkamehameha"],
+  "specialAbilities": ["Ilusion de imagen", "Sueño"],
+  "transformations": ["Super Saiyan"]
+}
+
+
+
+2. GET /api/characters/ (Obtener todos los personajes)
+	Método: GET
+	http://dragon-ball-api-corte3.onrender.com/api/characters
+
+
+3. GET /api/characters/:id (Obtener un personaje por ID)
+	Método: GET
+	http://dragon-ball-api-corte3.onrender.com/api/characters/<id-del-personaje>
+
+
+4. GET /api/characters?name=<nombre del personaje> (Obtener personajes por nombre)
+	Método: GET
+	https://dragon-ball-api-corte3.onrender.com/api/characters?name=<nombre del personaje>
+
+
+5. GET /api/characters?race=<nombre de la raza> (Obtener personajes por raza)
+	Método: GET
+	https://dragon-ball-api-corte3.onrender.com/api/characters?race=<nombre de la raza>
+
+
+6. GET /api/characters?technique=<nombre de la tecnica> (Obtener personajes por tecnicas)
+	Método: GET
+	https://dragon-ball-api-corte3.onrender.com/api/characters?technique=<nombre de la tecnica>
+
+
+7. PUT /api/characters/:id (Actualizar un personaje por ID)
+	Método: PUT
+	http://dragon-ball-api-corte3.onrender.com/api/characters/<id-del-personaje> 
+	Headers:
+		Content-Type: application/json
+		Authorization: Bearer <tu_token_jwt>
+	Body:
+json
+{
+  "techniques": ["Descarga de lanzamiento de rocas", "Embestida", "Superkamehameha"]
+}
+
+
+8. DELETE /api/characters/:id (Eliminar un personaje por ID)
+	Método: DELETE
+	http://dragon-ball-api-corte3.onrender.com/api/characters/<id-del-personaje>
+	Headers:
+		Authorization: Bearer <tu_token_jwt>
